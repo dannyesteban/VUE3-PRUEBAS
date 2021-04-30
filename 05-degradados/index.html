@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Generadodor de degrados de ccs en vue">
+
+    <title>Grandient Gen</title>
+    <script src="https://unpkg.com/vue@next"></script>
+
+    <link rel="stylesheet" href="./css/style.css">
+
+
+</head>
+<body>
+
+    <div id="app">
+        <h1>{{title}}</h1>
+        <hr>
+        <form >
+            <label for="">    
+               Color 1: <input type="color" v-model="fcolor">
+            </label>
+            <label for="">    
+                Color 2: <input type="color" v-model="scolor" >
+             </label>
+        
+        </form>
+        <p>
+            Color 1:{{fcolor}}
+        </p>
+        <p>
+            Color 2:{{scolor}}
+        </p>
+        <p>{{setColor}}</p>
+
+        <form >
+        <label for="">
+            <input class="value-css" type="text" :value="setColor">
+        </label>
+        <br>
+
+        <label for="">
+            <input type="radio" :value="1" v-model.number="orientation">Right
+        </label>
+
+        <label for="">
+            <input type="radio" :value="2" v-model.number="orientation">Left
+        </label>
+
+        <label for="">
+            <input type="radio" :value="3" v-model.number="orientation">top
+        </label>
+
+        <label for="">
+            <input type="radio" :value="4" v-model.number="orientation">Botom
+        </label>
+
+        
+        </form>
+
+        <br>
+        <div class="area" :style="setColor" ></div>
+
+    </div>
+    <script src="./js/main.js"></script>
+    <script src="./js/mountApp.js"></script> 
+</body>
+</html>

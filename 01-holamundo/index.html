@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hola Mundo VUE</title>
+
+    <script src="https://unpkg.com/vue@next"></script>
+
+    <link rel="stylesheet" href="./style.css">
+
+</head>
+
+<body>
+
+<div id="app">
+ 
+    <h1 v-if="edad <= 0 || edad >=110 " class="rango_error">Edad fuera de rango</h1>
+    <h1 v-else-if="edad >= 18" class="good">Eres Mayor de edad</h1>
+    <h1 v-else  class="error">Eres Menor de edad {{edad}}</h1>
+
+    <!--h1 :class="classValue">{{title}}</h1>-->
+    
+    <!--
+   <h1>{{title}}</h1>
+    <a v-bind:href="url" target="_blank">Google</a>
+    <hr>
+    <img :src="picture" width="300" height="300">
+   -->
+</div>
+
+
+<script src="./main.js"></script>
+
+<script>
+    const mountApp = app.mount("#app");
+</script>
+
+</body>
+
+
+</html>

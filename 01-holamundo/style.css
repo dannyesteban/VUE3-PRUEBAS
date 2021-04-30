@@ -1,0 +1,16 @@
+.good{
+    color:blue;
+    font-size: 5rem;
+}
+.error{
+    color:red;
+    font-size: 5rem;
+}
+
+.rango_error{
+    color:rgb(199, 96, 11);
+    font-size: 5rem;
+}
+
+
+
