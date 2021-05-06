@@ -4,18 +4,20 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Peticiones en Vue</title>
+    <title>Componentes Vue</title>
     <script src="https://unpkg.com/vue@next"></script>
   </head>
   <body>
     <div id="app">
-      <h1>{{title}}</h1>
+      <hedear-main></hedear-main>
       <hr />
-      <img :src="imagen" alt="" />
-      {{imagen}}
+      <lista-paises :paises="paise"></lista-paises>
     </div>
 
     <script src="./js/main.js"></script>
+    <!-- Montar antes de mountApp.js-->
+    <script src="./components/Header.js"></script>
+    <script src="./components/ListaPaises.js"></script>
     <script src="./js/mountApp.js"></script>
   </body>
 </html>

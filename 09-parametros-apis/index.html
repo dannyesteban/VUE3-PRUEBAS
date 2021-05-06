@@ -6,13 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Peticiones en Vue</title>
     <script src="https://unpkg.com/vue@next"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
   </head>
   <body>
     <div id="app">
       <h1>{{title}}</h1>
       <hr />
-      <img :src="imagen" alt="" />
-      {{imagen}}
+      <div class="container" v-for="item in datos" :key="item.id">
+
+      </div> 
+       
+      </div>
     </div>
 
     <script src="./js/main.js"></script>
