@@ -14,7 +14,7 @@ export default {
 
 <style scoped>
 h1{
-    background-color: rgb(68, 71, 80);
+    background-color: #444750;
     padding: 1rem;
     text-align: center;
     color: snow;
