@@ -83,6 +83,7 @@
 </template>
 
 <script>
+import router from "../router/index";
 export default {
   data: () => ({
     project: {
@@ -90,18 +91,22 @@ export default {
       description: "",
       langs: [],
       status: true,
+      localId: "",
     },
   }),
   methods: {
     async fnRegistrar() {
-      console.log(this.project);
+      const user = JSON.parse(localStorage.getItem("user"));
+      this.project.localId = user.localId;
+
       await fetch(
-        "https://crud-vue-6cdcb-default-rtdb.firebaseio.com/projects.json",
+        `https://crud-vue-6cdcb-default-rtdb.firebaseio.com/projects/${user.localId}.json?auth=${user.idToken}`,
         {
           method: "POST",
           body: JSON.stringify(this.project),
         }
       );
+      router.push("/proyectos");
       // const data = await res.json();
       //console.log(data);
     },

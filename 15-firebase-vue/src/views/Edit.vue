@@ -83,6 +83,7 @@
 </template>
 
 <script>
+import router from "../router/index";
 export default {
   data: () => ({
     project: {},
@@ -91,21 +92,25 @@ export default {
   methods: {
     async fnGetProject() {
       this.id = this.$route.params.id;
+      const user = JSON.parse(localStorage.getItem("user"));
       const res = await fetch(
-        `https://crud-vue-6cdcb-default-rtdb.firebaseio.com/projects/${this.id}.json`
+        `https://crud-vue-6cdcb-default-rtdb.firebaseio.com/projects/${user.localId}/${this.id}.json?auth=${user.idToken}`
       );
       const data = await res.json();
       this.project = data;
     },
 
     async fnPutProject() {
+      const user = JSON.parse(localStorage.getItem("user"));
+      this.project.localId = user.localId;
       await fetch(
-        `https://crud-vue-6cdcb-default-rtdb.firebaseio.com/projects/${this.id}.json`,
+        `https://crud-vue-6cdcb-default-rtdb.firebaseio.com/projects/${user.localId}/${this.id}.json?auth=${user.idToken}`,
         {
           method: "PATCH",
           body: JSON.stringify(this.project),
         }
       );
+      router.push("/proyectos");
     },
   },
   mounted() {

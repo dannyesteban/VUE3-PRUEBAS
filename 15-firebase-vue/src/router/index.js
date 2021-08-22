@@ -8,13 +8,13 @@ const routes = [
     component: Home
   },
   {
-    path: "/about",
-    name: "About",
+    path: "/Login",
+    name: "Login",
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue")
+      import(/* webpackChunkName: "login" */ "../views/Login.vue")
   },
   {
     path: "/proyectos",
@@ -23,7 +23,8 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () =>
-      import(/* webpackChunkName: "proyectos" */ "../views/Proyectos.vue")
+      import(/* webpackChunkName: "proyectos" */ "../views/Proyectos.vue"),
+    meta: {protect: true}
   },
   {
     path: "/crear-proyectos",
@@ -32,7 +33,8 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () =>
-      import(/* webpackChunkName: "crearProyectos" */ "../views/Create.vue")
+      import(/* webpackChunkName: "crearProyectos" */ "../views/Create.vue"),
+    meta: {protect: true}
   },
   {
     path: "/editar-proyectos/:id",
@@ -41,13 +43,26 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () =>
-      import(/* webpackChunkName: "editarProyectos" */ "../views/Edit.vue")
+      import(/* webpackChunkName: "editarProyectos" */ "../views/Edit.vue"),
+    meta: {protect: true}
   }
 ];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
+});
+
+router.beforeEach((to, from, next) => {
+  if (to.meta.protect) {
+    if (localStorage.getItem("user")) {
+      next();
+    } else {
+      next("/login");
+    }
+  } else {
+    next();
+  }
 });
 
 export default router;

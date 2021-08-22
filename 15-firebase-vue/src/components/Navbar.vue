@@ -9,17 +9,25 @@
         >
 
         <ul class="right hide-on-med-and-down">
-          <li>
-            <router-link to="/">Home</router-link>
+          <li v-if="!sesion">
+            <router-link to="/">Register</router-link>
           </li>
-          <li>
-            <router-link to="about">About</router-link>
+          <li v-if="!sesion">
+            <router-link to="/login">Login</router-link>
           </li>
-          <li>
+          <li v-if="sesion">
             <router-link
               class="waves-effect waves-light btn #0288d1 light-blue darken-2"
               to="/proyectos"
               >Proyectos</router-link
+            >
+          </li>
+          <li v-if="sesion">
+            <router-link
+              class="waves-effect waves-light btn #0288d1 light-blue darken-2"
+              to="/"
+              @click="fnCerrarSesion"
+              >Cerrar Sesion</router-link
             >
           </li>
         </ul>
@@ -27,14 +35,22 @@
     </nav>
 
     <ul class="sidenav" id="mobile-demo">
-      <li>
-        <router-link to="/">Home</router-link>
+      <li v-if="!sesion">
+        <router-link to="/">Register</router-link>
       </li>
-      <li>
-        <router-link to="about">About</router-link>
+      <li v-if="!sesion">
+        <router-link to="/login">Login</router-link>
       </li>
-      <li>
+      <li v-if="sesion">
         <router-link to="/proyectos">Proyectos</router-link>
+      </li>
+      <li v-if="sesion">
+        <router-link
+          class="waves-effect waves-light btn #0288d1 light-blue darken-2"
+          to="/"
+          @click="fnCerrarSesion"
+          >Cerrar Sesion</router-link
+        >
       </li>
     </ul>
   </div>
@@ -42,6 +58,23 @@
 
 <script>
 export default {
+  data: () => ({
+    user: false,
+  }),
+  computed: {
+    sesion() {
+      const user = JSON.parse(localStorage.getItem("user"));
+      if (user != null) {
+        return true;
+      }
+      return false;
+    },
+  },
+  methods: {
+    fnCerrarSesion() {
+      localStorage.removeItem("user");
+    },
+  },
   mounted() {
     M.AutoInit();
   },

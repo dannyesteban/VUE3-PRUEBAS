@@ -37,8 +37,10 @@ export default {
   },
   methods: {
     async fnDeleteProject() {
+      const user = JSON.parse(localStorage.getItem("user"));
+
       const res = await fetch(
-        `https://crud-vue-6cdcb-default-rtdb.firebaseio.com/projects/${this.id}.json`,
+        `https://crud-vue-6cdcb-default-rtdb.firebaseio.com/projects/${user.localId}/${this.id}.json?auth=${user.idToken}`,
         {
           method: "PATCH",
           body: JSON.stringify({ status: false }),
